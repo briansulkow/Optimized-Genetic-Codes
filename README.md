@@ -1,12 +1,13 @@
 # Optimized-Genetic-Codes
-These files represent methods developed by Brian Sulkow for the paper-
+These files represent methods for generating genetic that are optimized for parameters that quantitatively describe amino acids.
+The methods on the page are developed by Brian Sulkow for the paper-
 
 "Phylogeny Recapitulates Learning: Self-Optimization of Genetic Code" (Attie,Sulkow,Di,and Qiu,2018)
 https://www.biorxiv.org/content/early/2018/02/06/260877
 
 The full set of files associated with this paper can be found at codetsp. 
 
-aaPaths2020 gives a method allows you to find paths through the set of 20 amino acids. These paths can be optimized for any combination of dimensions that quantitatively describe Amino Acids. For this program we have restricted the 4 dimensions- Polarity, Hydropathy, Volume and Iso-Electricity. 
+aaPaths2020- The file contains a Hopfield like Neural Network that uses annealing to find paths through the set of 20 amino acids. These paths can be optimized for any combination of dimensions that quantitatively describe Amino Acids. For this program we have restricted the 4 dimensions- Polarity, Hydropathy, Volume and Iso-Electricity.
 
 WeigangCode-The program allows you to take the set of amino acid paths from the aaPaths2020 and pair them with a a single path through the set of codons. The path was developed for 
 
