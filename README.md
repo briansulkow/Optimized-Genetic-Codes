@@ -16,3 +16,5 @@ pairplots2-  PairPlots2 gives you a method for comparing the distribution of err
 2020Plots-This plot, created using GGPLOT2, shows the distributions of errors associated to genetic codes created with paths through 20 amino acids.
 
 2121Plots- This plot, created using GGPLOT2, shows the distributions of errors associated to genetic codes created with paths through 20 amino acids.
+
+pcaPlots- This file allows you to graph paths through the amino acids using coordinates (polarity, hydropathy, iso-electricity, volume) with amino acids and PCA coordinates.   
