@@ -1,9 +1,10 @@
-#Distance Experiment-we have 16 alleles, how does the max distance occur when we increase the number of loci
+#Goal-Using genetic algorithms we seek to evolve sets of HIV alleles, represented by binary sequences, so that minimum distance between a 
+# any pair of alleles is maximized.   
+#This question is relevant to immunologists looking for similarities between HIV strains that aren't related by recombinations. 
+#It's also relevant to computer science folks looking for to maximize minimum distance between codewords with a prescribed length. 
 
-#A matrix represent n alleles, and m loci is a individual in this population.  
-# flatten the matrix into a vector. The population will a set of these individuals.  
 
-#S1 Functions, and Priliminaries- population, Two fitness functions, mutation function
+#S1 Functions, and Priliminaries- population, fitness functions, mutation function
 
 #population- A function to make initial population for genetic alg. The parameters are
 #nloci- number of loci, nalleles-number of alleles, and popsize- population size.  
@@ -106,13 +107,6 @@ for (i in 1:generations) {    #loop on generations
   return(resultsdf)
 }
 
-p1<-population(4,16,2)
-mutate(p1[[1]],4,16)
-
-t2<-genAlgTotalPWDiff(p1,4,16,20)
-t2[,3]
-par(mfrow=c(1,1))
-plot(t2[,2])
 
 
 #genAlgMaxMin- the fitness function is derived by taking the min of pw diff btwn alleles of an individual
@@ -171,32 +165,49 @@ genAlgMaxMin<-function(data,nloci,nalleles,generations) {
   return(resultsdf)
 }
 
-p1<-population(20,16,100)
-mutate(p1[[1]],4,20)
-t2<-genAlgMaxMin(p1,20,16,10)
 
-par(mfrow=c(1,1))
-plot(t2[,2],t2[,1])
-t2
-
-
-
-##as nloci incr. what happens to distance. Note, if we have 16 alleles then we must have at least 
-#nalleles <= 2^nloci otherwise there's repetition. 
-#in the following experiment we hold nalleles fixed and find what the distance should be
-#since we have 16 alleles we want >=4 loci
-#ex1
+#genAlgMaxMin Test  - 
+#Hold nalleles fixed and increase number of loci.
+#output the max of the set of total distances 
+#and the max of the minimum pw distances between alleles
 
 maxmindistance<-c()
-lociSeq<-seq(10,160,10)
+max2distance<-c()
+lociSeq<-seq(10,30,10)
 lociSeq
 for (i in lociSeq)  {
   p1<-population(i,16,100)
   p1Evolve<-genAlgMaxMin(p1,i,16,10) 
   print(p1Evolve)
   maxmindistance[length(maxmindistance)+1]<-max(p1Evolve[,1])
+  max2distance[length(max2distance)+1]<-max(p1Evolve[,2])
   
   }
 
-maxmindistance
+
 plot(maxmindistance)
+plot(max2distance)
+
+#genAlgTotalPWDistance Test 
+#Hold nalleles fixed and increase number of loci.
+#output the max of the set of total distances 
+
+maxdistance<-c()
+lociSeq<-seq(10,30,10)
+
+for (i in lociSeq)  {
+  p2<-population(i,16,100)
+  p2Evolve<-genAlgTotalPWDiff(p2,i,16,10) 
+  print(p2Evolve)
+  maxdistance[length(maxdistance)+1]<-max(p2Evolve[,2])
+  
+}
+
+
+maxdistance
+
+#Compare output of genetic algorithms
+
+plot(maxdistance,max2distance)
+
+
